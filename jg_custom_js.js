@@ -102,34 +102,23 @@ function jg_getOptionSet(organizationURI, entity, attributeID, callback) {
         options: []
     };
 
-    $.ajax({
-        type: "GET",
-        url: organizationURI + "/api/data/v9.1/" + url,
-        headers: {
-            "Accept": "application/json; odata.metadata=full",
-            "Content-Type": "application/json; charset=utf-8",
-            "OData-MaxVersion": "4.0",
-            "OData-Version": "4.0"
-        },
-        async: false,
-        success: function(data) {
-            if(data) {
-                optionset.isGlobal = data.IsGlobal;
-                optionset.name = data.Name;
-                optionset.metadataid = data.MetadataId;
-                for (var i = 0; i < data.Options; i++) {
-                    var option = data.Options[i];
-                    var object = {
-                        value: option.Value,
-                        name: Label.LocalizedLabels.Label
-                    };
-                    optionset.options.push(object);
-                }
-                callback(optionset);
+    jg_retrieveData(organizationURI, url, function(data) {
+        if(data) {
+            optionset.isGlobal = data.IsGlobal;
+            optionset.name = data.Name;
+            optionset.metadataid = data.MetadataId;
+            for (var i = 0; i < data.Options; i++) {
+                var option = data.Options[i];
+                var object = {
+                    value: option.Value,
+                    name: Label.LocalizedLabels.Label
+                };
+                optionset.options.push(object);
             }
-            else {
-                callback(false);
-            }
+            callback(optionset);
+        }
+        else {
+            callback(false);
         }
     });
 }
