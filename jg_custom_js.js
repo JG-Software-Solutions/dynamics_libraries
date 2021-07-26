@@ -111,7 +111,7 @@ function jg_getOptionSet(organizationURI, entity, attributeID, callback) {
                 var option = data.Options[i];
                 var object = {
                     value: option.Value,
-                    name: Label.LocalizedLabels.Label
+                    name: option.Label.LocalizedLabels[0].Label
                 };
                 optionset.options.push(object);
             }
