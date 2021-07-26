@@ -107,7 +107,7 @@ function jg_getOptionSet(organizationURI, entity, attributeID, callback) {
             optionset.isGlobal = data.IsGlobal;
             optionset.name = data.Name;
             optionset.metadataid = data.MetadataId;
-            for (var i = 0; i < data.Options; i++) {
+            for (var i = 0; i < data.Options.length; i++) {
                 var option = data.Options[i];
                 var object = {
                     value: option.Value,
