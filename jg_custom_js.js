@@ -2,8 +2,8 @@
 
 $(function(){
     "use strict";
-    $('.modal-header button.close').on('click', function() {
-        $(this).closest('.modal').modal('hide');
+    $('button[data-dismiss="modal"]').on('click', function() {
+        $(this).closest('.modal').hide();
     });
 });
 
