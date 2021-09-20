@@ -25,7 +25,7 @@ function jg_createData(organizationURI, url, data, callback) {
         type: "POST",
         contentType: 'application/json',
         dataType: 'json',
-        url: organizationURI + "/api/data/v9.1/" + url,
+        url: organizationURI + "/api/data/v9.0/" + url,
         data: JSON.stringify(data),
         headers: {
             "Accept": "application/json; odata.metadata=full",
@@ -45,7 +45,7 @@ function jg_updateData(organizationURI, url, data, callback) {
         type: "PATCH",
         contentType: 'application/json',
         dataType: 'json',
-        url: organizationURI + "/api/data/v9.1/" + url,
+        url: organizationURI + "/api/data/v9.0/" + url,
         data: JSON.stringify(data),
         headers: {
             "Accept": "application/json; odata.metadata=full",
@@ -64,7 +64,7 @@ function jg_retrieveData(organizationURI, url, callback) {
     "use strict";
     $.ajax({
         type: "GET",
-        url: organizationURI + "/api/data/v9.1/" + url,
+        url: organizationURI + "/api/data/v9.0/" + url,
         headers: {
             "Accept": "application/json; odata.metadata=full",
             "Content-Type": "application/json; charset=utf-8",
@@ -80,7 +80,7 @@ function jg_deleteData(organizationURI, url, callback) {
     "use strict";
     $.ajax({
         type: "DELETE",
-        url: organizationURI + "/api/data/v9.1/" + url,
+        url: organizationURI + "/api/data/v9.0/" + url,
         headers: {
             "Accept": "application/json; odata.metadata=full",
             "Content-Type": "application/json; charset=utf-8",
