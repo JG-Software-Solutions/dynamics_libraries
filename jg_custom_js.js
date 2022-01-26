@@ -122,3 +122,34 @@ function jg_getOptionSet(organizationURI, entity, attributeID, callback) {
         }
     });
 }
+
+function jg_getMultiOptionSet(organizationURI, entity, attributeID, callback) {
+    "use strict";
+    var url = "EntityDefinitions(LogicalName='"+entity+"')/Attributes("+attributeID+")/Microsoft.Dynamics.CRM.MultiSelectPicklistAttributeMetadata/OptionSet";
+    var optionset = {
+        isGlobal: null,
+        name: null,
+        metadataid: null,
+        options: []
+    };
+
+    jg_retrieveData(organizationURI, url, function(data) {
+        if(data) {
+            optionset.isGlobal = data.IsGlobal;
+            optionset.name = data.Name;
+            optionset.metadataid = data.MetadataId;
+            for (var i = 0; i < data.Options.length; i++) {
+                var option = data.Options[i];
+                var object = {
+                    value: option.Value,
+                    name: option.Label.LocalizedLabels[0].Label
+                };
+                optionset.options.push(object);
+            }
+            callback(optionset);
+        }
+        else {
+            callback(false);
+        }
+    });
+}
